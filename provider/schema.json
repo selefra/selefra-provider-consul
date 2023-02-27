@@ -1,0 +1,1131 @@
+{
+  "provider_name": "terraform-provider-consul",
+  "resources": [
+    {
+      "resource_name": "consul_prepared_query",
+      "description": "",
+      "columns": [
+        {
+          "column_name": "only_passing",
+          "column_type": 6,
+          "description": ""
+        },
+        {
+          "column_name": "token",
+          "column_type": 7,
+          "description": ""
+        },
+        {
+          "column_name": "template",
+          "column_type": 11,
+          "description": ""
+        },
+        {
+          "column_name": "datacenter",
+          "column_type": 7,
+          "description": ""
+        },
+        {
+          "column_name": "id",
+          "column_type": 7,
+          "description": ""
+        },
+        {
+          "column_name": "name",
+          "column_type": 7,
+          "description": ""
+        },
+        {
+          "column_name": "ignore_check_ids",
+          "column_type": 11,
+          "description": ""
+        },
+        {
+          "column_name": "service",
+          "column_type": 7,
+          "description": ""
+        },
+        {
+          "column_name": "service_meta",
+          "column_type": 11,
+          "description": ""
+        },
+        {
+          "column_name": "session",
+          "column_type": 7,
+          "description": ""
+        },
+        {
+          "column_name": "tags",
+          "column_type": 11,
+          "description": ""
+        },
+        {
+          "column_name": "dns",
+          "column_type": 11,
+          "description": ""
+        },
+        {
+          "column_name": "failover",
+          "column_type": 11,
+          "description": ""
+        },
+        {
+          "column_name": "connect",
+          "column_type": 6,
+          "description": ""
+        },
+        {
+          "column_name": "near",
+          "column_type": 7,
+          "description": ""
+        },
+        {
+          "column_name": "node_meta",
+          "column_type": 11,
+          "description": ""
+        },
+        {
+          "column_name": "stored_token",
+          "column_type": 7,
+          "description": ""
+        }
+      ]
+    },
+    {
+      "resource_name": "consul_config_entry",
+      "description": "",
+      "columns": [
+        {
+          "column_name": "partition",
+          "column_type": 7,
+          "description": "The partition the config entry is associated with."
+        },
+        {
+          "column_name": "config_json",
+          "column_type": 7,
+          "description": ""
+        },
+        {
+          "column_name": "id",
+          "column_type": 7,
+          "description": ""
+        },
+        {
+          "column_name": "kind",
+          "column_type": 7,
+          "description": ""
+        },
+        {
+          "column_name": "name",
+          "column_type": 7,
+          "description": ""
+        },
+        {
+          "column_name": "namespace",
+          "column_type": 7,
+          "description": ""
+        }
+      ]
+    },
+    {
+      "resource_name": "consul_agent_service",
+      "description": "",
+      "columns": [
+        {
+          "column_name": "address",
+          "column_type": 7,
+          "description": ""
+        },
+        {
+          "column_name": "id",
+          "column_type": 7,
+          "description": ""
+        },
+        {
+          "column_name": "name",
+          "column_type": 7,
+          "description": ""
+        },
+        {
+          "column_name": "port",
+          "column_type": 5,
+          "description": ""
+        },
+        {
+          "column_name": "tags",
+          "column_type": 11,
+          "description": ""
+        }
+      ]
+    },
+    {
+      "resource_name": "consul_catalog_entry",
+      "description": "",
+      "columns": [
+        {
+          "column_name": "node",
+          "column_type": 7,
+          "description": ""
+        },
+        {
+          "column_name": "token",
+          "column_type": 7,
+          "description": ""
+        },
+        {
+          "column_name": "service",
+          "column_type": 11,
+          "description": ""
+        },
+        {
+          "column_name": "address",
+          "column_type": 7,
+          "description": ""
+        },
+        {
+          "column_name": "datacenter",
+          "column_type": 7,
+          "description": ""
+        },
+        {
+          "column_name": "id",
+          "column_type": 7,
+          "description": ""
+        }
+      ]
+    },
+    {
+      "resource_name": "consul_admin_partition",
+      "description": "",
+      "columns": [
+        {
+          "column_name": "id",
+          "column_type": 7,
+          "description": ""
+        },
+        {
+          "column_name": "name",
+          "column_type": 7,
+          "description": "The partition name. This must be a valid DNS hostname label."
+        },
+        {
+          "column_name": "description",
+          "column_type": 7,
+          "description": "Free form partition description."
+        }
+      ]
+    },
+    {
+      "resource_name": "consul_keys",
+      "description": "",
+      "columns": [
+        {
+          "column_name": "var",
+          "column_type": 11,
+          "description": ""
+        },
+        {
+          "column_name": "key",
+          "column_type": 11,
+          "description": ""
+        },
+        {
+          "column_name": "datacenter",
+          "column_type": 7,
+          "description": ""
+        },
+        {
+          "column_name": "id",
+          "column_type": 7,
+          "description": ""
+        },
+        {
+          "column_name": "namespace",
+          "column_type": 7,
+          "description": ""
+        },
+        {
+          "column_name": "partition",
+          "column_type": 7,
+          "description": ""
+        },
+        {
+          "column_name": "token",
+          "column_type": 7,
+          "description": ""
+        }
+      ]
+    },
+    {
+      "resource_name": "consul_acl_token",
+      "description": "",
+      "columns": [
+        {
+          "column_name": "partition",
+          "column_type": 7,
+          "description": "The partition the ACL token is associated with."
+        },
+        {
+          "column_name": "policies",
+          "column_type": 11,
+          "description": "List of policies."
+        },
+        {
+          "column_name": "roles",
+          "column_type": 11,
+          "description": "List of roles"
+        },
+        {
+          "column_name": "node_identities",
+          "column_type": 11,
+          "description": "The list of node identities that should be applied to the token."
+        },
+        {
+          "column_name": "description",
+          "column_type": 7,
+          "description": "The token description."
+        },
+        {
+          "column_name": "expiration_time",
+          "column_type": 7,
+          "description": "If set this represents the point after which a token should be considered revoked and is eligible for destruction."
+        },
+        {
+          "column_name": "local",
+          "column_type": 6,
+          "description": "Flag to set the token local to the current datacenter."
+        },
+        {
+          "column_name": "namespace",
+          "column_type": 7,
+          "description": ""
+        },
+        {
+          "column_name": "service_identities",
+          "column_type": 11,
+          "description": "The list of service identities that should be applied to the token."
+        },
+        {
+          "column_name": "accessor_id",
+          "column_type": 7,
+          "description": "The token id."
+        },
+        {
+          "column_name": "id",
+          "column_type": 7,
+          "description": ""
+        }
+      ]
+    },
+    {
+      "resource_name": "consul_license",
+      "description": "",
+      "columns": [
+        {
+          "column_name": "installation_id",
+          "column_type": 7,
+          "description": ""
+        },
+        {
+          "column_name": "license_id",
+          "column_type": 7,
+          "description": ""
+        },
+        {
+          "column_name": "product",
+          "column_type": 7,
+          "description": ""
+        },
+        {
+          "column_name": "start_time",
+          "column_type": 7,
+          "description": ""
+        },
+        {
+          "column_name": "valid",
+          "column_type": 6,
+          "description": ""
+        },
+        {
+          "column_name": "customer_id",
+          "column_type": 7,
+          "description": ""
+        },
+        {
+          "column_name": "features",
+          "column_type": 11,
+          "description": ""
+        },
+        {
+          "column_name": "id",
+          "column_type": 7,
+          "description": ""
+        },
+        {
+          "column_name": "issue_time",
+          "column_type": 7,
+          "description": ""
+        },
+        {
+          "column_name": "license",
+          "column_type": 7,
+          "description": ""
+        },
+        {
+          "column_name": "warnings",
+          "column_type": 11,
+          "description": ""
+        },
+        {
+          "column_name": "datacenter",
+          "column_type": 7,
+          "description": ""
+        },
+        {
+          "column_name": "expiration_time",
+          "column_type": 7,
+          "description": ""
+        }
+      ]
+    },
+    {
+      "resource_name": "consul_acl_policy",
+      "description": "",
+      "columns": [
+        {
+          "column_name": "datacenters",
+          "column_type": 11,
+          "description": "The ACL policy datacenters."
+        },
+        {
+          "column_name": "description",
+          "column_type": 7,
+          "description": "The ACL policy description."
+        },
+        {
+          "column_name": "id",
+          "column_type": 7,
+          "description": ""
+        },
+        {
+          "column_name": "name",
+          "column_type": 7,
+          "description": "The ACL policy name."
+        },
+        {
+          "column_name": "namespace",
+          "column_type": 7,
+          "description": ""
+        },
+        {
+          "column_name": "partition",
+          "column_type": 7,
+          "description": "The partition the ACL policy is associated with."
+        },
+        {
+          "column_name": "rules",
+          "column_type": 7,
+          "description": "The ACL policy rules."
+        }
+      ]
+    },
+    {
+      "resource_name": "consul_namespace_role_attachment",
+      "description": "",
+      "columns": [
+        {
+          "column_name": "namespace",
+          "column_type": 7,
+          "description": "The namespace to attach the role to."
+        },
+        {
+          "column_name": "role",
+          "column_type": 7,
+          "description": "The role name."
+        },
+        {
+          "column_name": "id",
+          "column_type": 7,
+          "description": ""
+        }
+      ]
+    },
+    {
+      "resource_name": "consul_peering",
+      "description": "",
+      "columns": [
+        {
+          "column_name": "peer_server_addresses",
+          "column_type": 11,
+          "description": ""
+        },
+        {
+          "column_name": "peer_server_name",
+          "column_type": 7,
+          "description": ""
+        },
+        {
+          "column_name": "peering_token",
+          "column_type": 7,
+          "description": "The peering token fetched from the peer cluster."
+        },
+        {
+          "column_name": "deleted_at",
+          "column_type": 7,
+          "description": ""
+        },
+        {
+          "column_name": "peer_ca_pems",
+          "column_type": 11,
+          "description": ""
+        },
+        {
+          "column_name": "peer_name",
+          "column_type": 7,
+          "description": "The name assigned to the peer cluster. The `peer_name` is used to reference the peer cluster in service discovery queries and configuration entries such as `service-intentions`. This field must be a valid DNS hostname label."
+        },
+        {
+          "column_name": "peer_id",
+          "column_type": 7,
+          "description": ""
+        },
+        {
+          "column_name": "state",
+          "column_type": 7,
+          "description": ""
+        },
+        {
+          "column_name": "id",
+          "column_type": 7,
+          "description": ""
+        },
+        {
+          "column_name": "meta",
+          "column_type": 11,
+          "description": "Specifies KV metadata to associate with the peering. This parameter is not required and does not directly impact the cluster peering process."
+        },
+        {
+          "column_name": "partition",
+          "column_type": 7,
+          "description": ""
+        }
+      ]
+    },
+    {
+      "resource_name": "consul_certificate_authority",
+      "description": "",
+      "columns": [
+        {
+          "column_name": "id",
+          "column_type": 7,
+          "description": ""
+        },
+        {
+          "column_name": "config",
+          "column_type": 11,
+          "description": ""
+        },
+        {
+          "column_name": "connect_provider",
+          "column_type": 7,
+          "description": ""
+        }
+      ]
+    },
+    {
+      "resource_name": "consul_acl_role",
+      "description": "",
+      "columns": [
+        {
+          "column_name": "partition",
+          "column_type": 7,
+          "description": "The partition the ACL role is associated with."
+        },
+        {
+          "column_name": "policies",
+          "column_type": 11,
+          "description": "The list of policies that should be applied to the role."
+        },
+        {
+          "column_name": "node_identities",
+          "column_type": 11,
+          "description": "The list of node identities that should be applied to the role."
+        },
+        {
+          "column_name": "service_identities",
+          "column_type": 11,
+          "description": "The list of service identities that should be applied to the role."
+        },
+        {
+          "column_name": "description",
+          "column_type": 7,
+          "description": "A free form human readable description of the role."
+        },
+        {
+          "column_name": "id",
+          "column_type": 7,
+          "description": ""
+        },
+        {
+          "column_name": "name",
+          "column_type": 7,
+          "description": "The name of the ACL role."
+        },
+        {
+          "column_name": "namespace",
+          "column_type": 7,
+          "description": ""
+        }
+      ]
+    },
+    {
+      "resource_name": "consul_acl_token_role_attachment",
+      "description": "",
+      "columns": [
+        {
+          "column_name": "id",
+          "column_type": 7,
+          "description": ""
+        },
+        {
+          "column_name": "role",
+          "column_type": 7,
+          "description": "The role name."
+        },
+        {
+          "column_name": "token_id",
+          "column_type": 7,
+          "description": "The token accessor id."
+        }
+      ]
+    },
+    {
+      "resource_name": "consul_key_prefix",
+      "description": "",
+      "columns": [
+        {
+          "column_name": "partition",
+          "column_type": 7,
+          "description": ""
+        },
+        {
+          "column_name": "path_prefix",
+          "column_type": 7,
+          "description": ""
+        },
+        {
+          "column_name": "subkeys",
+          "column_type": 11,
+          "description": ""
+        },
+        {
+          "column_name": "token",
+          "column_type": 7,
+          "description": ""
+        },
+        {
+          "column_name": "subkey",
+          "column_type": 11,
+          "description": ""
+        },
+        {
+          "column_name": "datacenter",
+          "column_type": 7,
+          "description": ""
+        },
+        {
+          "column_name": "id",
+          "column_type": 7,
+          "description": ""
+        },
+        {
+          "column_name": "namespace",
+          "column_type": 7,
+          "description": ""
+        }
+      ]
+    },
+    {
+      "resource_name": "consul_node",
+      "description": "",
+      "columns": [
+        {
+          "column_name": "id",
+          "column_type": 7,
+          "description": ""
+        },
+        {
+          "column_name": "meta",
+          "column_type": 11,
+          "description": ""
+        },
+        {
+          "column_name": "name",
+          "column_type": 7,
+          "description": ""
+        },
+        {
+          "column_name": "partition",
+          "column_type": 7,
+          "description": "The partition the node is associated with."
+        },
+        {
+          "column_name": "token",
+          "column_type": 7,
+          "description": ""
+        },
+        {
+          "column_name": "address",
+          "column_type": 7,
+          "description": ""
+        },
+        {
+          "column_name": "datacenter",
+          "column_type": 7,
+          "description": ""
+        }
+      ]
+    },
+    {
+      "resource_name": "consul_intention",
+      "description": "",
+      "columns": [
+        {
+          "column_name": "description",
+          "column_type": 7,
+          "description": ""
+        },
+        {
+          "column_name": "destination_namespace",
+          "column_type": 7,
+          "description": ""
+        },
+        {
+          "column_name": "id",
+          "column_type": 7,
+          "description": ""
+        },
+        {
+          "column_name": "source_namespace",
+          "column_type": 7,
+          "description": ""
+        },
+        {
+          "column_name": "action",
+          "column_type": 7,
+          "description": ""
+        },
+        {
+          "column_name": "datacenter",
+          "column_type": 7,
+          "description": ""
+        },
+        {
+          "column_name": "destination_name",
+          "column_type": 7,
+          "description": ""
+        },
+        {
+          "column_name": "meta",
+          "column_type": 11,
+          "description": ""
+        },
+        {
+          "column_name": "source_name",
+          "column_type": 7,
+          "description": ""
+        }
+      ]
+    },
+    {
+      "resource_name": "consul_service",
+      "description": "",
+      "columns": [
+        {
+          "column_name": "datacenter",
+          "column_type": 7,
+          "description": ""
+        },
+        {
+          "column_name": "external",
+          "column_type": 6,
+          "description": ""
+        },
+        {
+          "column_name": "node",
+          "column_type": 7,
+          "description": ""
+        },
+        {
+          "column_name": "port",
+          "column_type": 5,
+          "description": ""
+        },
+        {
+          "column_name": "address",
+          "column_type": 7,
+          "description": ""
+        },
+        {
+          "column_name": "enable_tag_override",
+          "column_type": 6,
+          "description": ""
+        },
+        {
+          "column_name": "partition",
+          "column_type": 7,
+          "description": "The partition the service is associated with."
+        },
+        {
+          "column_name": "check",
+          "column_type": 11,
+          "description": ""
+        },
+        {
+          "column_name": "meta",
+          "column_type": 11,
+          "description": ""
+        },
+        {
+          "column_name": "namespace",
+          "column_type": 7,
+          "description": ""
+        },
+        {
+          "column_name": "service_id",
+          "column_type": 7,
+          "description": ""
+        },
+        {
+          "column_name": "id",
+          "column_type": 7,
+          "description": ""
+        },
+        {
+          "column_name": "name",
+          "column_type": 7,
+          "description": ""
+        },
+        {
+          "column_name": "tags",
+          "column_type": 11,
+          "description": ""
+        }
+      ]
+    },
+    {
+      "resource_name": "consul_acl_binding_rule",
+      "description": "",
+      "columns": [
+        {
+          "column_name": "namespace",
+          "column_type": 7,
+          "description": ""
+        },
+        {
+          "column_name": "partition",
+          "column_type": 7,
+          "description": "The partition the ACL binding rule is associated with."
+        },
+        {
+          "column_name": "selector",
+          "column_type": 7,
+          "description": "The expression used to math this rule against valid identities returned from an auth method validation."
+        },
+        {
+          "column_name": "auth_method",
+          "column_type": 7,
+          "description": "The name of the ACL auth method this rule apply."
+        },
+        {
+          "column_name": "bind_name",
+          "column_type": 7,
+          "description": "The name to bind to a token at login-time."
+        },
+        {
+          "column_name": "bind_type",
+          "column_type": 7,
+          "description": "Specifies the way the binding rule affects a token created at login."
+        },
+        {
+          "column_name": "description",
+          "column_type": 7,
+          "description": "A free form human readable description of the binding rule."
+        },
+        {
+          "column_name": "id",
+          "column_type": 7,
+          "description": ""
+        }
+      ]
+    },
+    {
+      "resource_name": "consul_namespace",
+      "description": "",
+      "columns": [
+        {
+          "column_name": "description",
+          "column_type": 7,
+          "description": ""
+        },
+        {
+          "column_name": "id",
+          "column_type": 7,
+          "description": ""
+        },
+        {
+          "column_name": "meta",
+          "column_type": 11,
+          "description": ""
+        },
+        {
+          "column_name": "name",
+          "column_type": 7,
+          "description": ""
+        },
+        {
+          "column_name": "partition",
+          "column_type": 7,
+          "description": "The partition the namespace is associated with."
+        },
+        {
+          "column_name": "policy_defaults",
+          "column_type": 11,
+          "description": ""
+        },
+        {
+          "column_name": "role_defaults",
+          "column_type": 11,
+          "description": ""
+        }
+      ]
+    },
+    {
+      "resource_name": "consul_acl_auth_method",
+      "description": "",
+      "columns": [
+        {
+          "column_name": "description",
+          "column_type": 7,
+          "description": "A free form human readable description of the auth method."
+        },
+        {
+          "column_name": "display_name",
+          "column_type": 7,
+          "description": "An optional name to use instead of the name attribute when displaying information about this auth method."
+        },
+        {
+          "column_name": "token_locality",
+          "column_type": 7,
+          "description": "The kind of token that this auth method produces. This can be either 'local' or 'global'."
+        },
+        {
+          "column_name": "type",
+          "column_type": 7,
+          "description": "The type of the ACL auth method."
+        },
+        {
+          "column_name": "namespace_rule",
+          "column_type": 11,
+          "description": ""
+        },
+        {
+          "column_name": "config",
+          "column_type": 11,
+          "description": "The raw configuration for this ACL auth method."
+        },
+        {
+          "column_name": "id",
+          "column_type": 7,
+          "description": ""
+        },
+        {
+          "column_name": "max_token_ttl",
+          "column_type": 7,
+          "description": "The maximum life of any token created by this auth method."
+        },
+        {
+          "column_name": "name",
+          "column_type": 7,
+          "description": "The name of the ACL auth method."
+        },
+        {
+          "column_name": "namespace",
+          "column_type": 7,
+          "description": ""
+        },
+        {
+          "column_name": "partition",
+          "column_type": 7,
+          "description": "The partition the ACL auth method is associated with."
+        },
+        {
+          "column_name": "config_json",
+          "column_type": 7,
+          "description": "The raw configuration for this ACL auth method."
+        }
+      ]
+    },
+    {
+      "resource_name": "consul_network_area",
+      "description": "",
+      "columns": [
+        {
+          "column_name": "token",
+          "column_type": 7,
+          "description": ""
+        },
+        {
+          "column_name": "use_tls",
+          "column_type": 6,
+          "description": ""
+        },
+        {
+          "column_name": "datacenter",
+          "column_type": 7,
+          "description": ""
+        },
+        {
+          "column_name": "id",
+          "column_type": 7,
+          "description": ""
+        },
+        {
+          "column_name": "peer_datacenter",
+          "column_type": 7,
+          "description": ""
+        },
+        {
+          "column_name": "retry_join",
+          "column_type": 11,
+          "description": ""
+        }
+      ]
+    },
+    {
+      "resource_name": "consul_namespace_policy_attachment",
+      "description": "",
+      "columns": [
+        {
+          "column_name": "policy",
+          "column_type": 7,
+          "description": "The policy name."
+        },
+        {
+          "column_name": "id",
+          "column_type": 7,
+          "description": ""
+        },
+        {
+          "column_name": "namespace",
+          "column_type": 7,
+          "description": "The namespace to attach the policy to."
+        }
+      ]
+    },
+    {
+      "resource_name": "consul_peering_token",
+      "description": "",
+      "columns": [
+        {
+          "column_name": "id",
+          "column_type": 7,
+          "description": ""
+        },
+        {
+          "column_name": "meta",
+          "column_type": 11,
+          "description": "Specifies KV metadata to associate with the peering. This parameter is not required and does not directly impact the cluster peering process."
+        },
+        {
+          "column_name": "partition",
+          "column_type": 7,
+          "description": ""
+        },
+        {
+          "column_name": "peer_name",
+          "column_type": 7,
+          "description": "The name assigned to the peer cluster. The `peer_name` is used to reference the peer cluster in service discovery queries and configuration entries such as `service-intentions`. This field must be a valid DNS hostname label."
+        },
+        {
+          "column_name": "peering_token",
+          "column_type": 7,
+          "description": "The generated peering token"
+        }
+      ]
+    },
+    {
+      "resource_name": "consul_acl_token_policy_attachment",
+      "description": "",
+      "columns": [
+        {
+          "column_name": "id",
+          "column_type": 7,
+          "description": ""
+        },
+        {
+          "column_name": "policy",
+          "column_type": 7,
+          "description": "The policy name."
+        },
+        {
+          "column_name": "token_id",
+          "column_type": 7,
+          "description": "The token accessor id."
+        }
+      ]
+    },
+    {
+      "resource_name": "consul_autopilot_config",
+      "description": "",
+      "columns": [
+        {
+          "column_name": "cleanup_dead_servers",
+          "column_type": 6,
+          "description": ""
+        },
+        {
+          "column_name": "datacenter",
+          "column_type": 7,
+          "description": ""
+        },
+        {
+          "column_name": "disable_upgrade_migration",
+          "column_type": 6,
+          "description": ""
+        },
+        {
+          "column_name": "max_trailing_logs",
+          "column_type": 5,
+          "description": ""
+        },
+        {
+          "column_name": "upgrade_version_tag",
+          "column_type": 7,
+          "description": ""
+        },
+        {
+          "column_name": "id",
+          "column_type": 7,
+          "description": ""
+        },
+        {
+          "column_name": "last_contact_threshold",
+          "column_type": 7,
+          "description": ""
+        },
+        {
+          "column_name": "redundancy_zone_tag",
+          "column_type": 7,
+          "description": ""
+        },
+        {
+          "column_name": "server_stabilization_time",
+          "column_type": 7,
+          "description": ""
+        }
+      ]
+    }
+  ]
+}
