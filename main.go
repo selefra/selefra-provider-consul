@@ -3,7 +3,7 @@
 package main
 
 import (
-	"github.com/CrestLee/selefra-terraform-provider-consul/resources"
+	"github.com/CrestLee/selefra-provider-consul/resources"
 	"github.com/selefra/selefra-provider-sdk/grpc/serve"
 )
 

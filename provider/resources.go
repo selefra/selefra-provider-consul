@@ -142,54 +142,58 @@ func GetResource_consul_catalog_entry() *selefra_terraform_schema.SelefraTerrafo
 	}
 }
 
-//// terraform resource: consul_admin_partition (enterprise only)
-//func GetResource_consul_admin_partition() *selefra_terraform_schema.SelefraTerraformResource {
-//	return &selefra_terraform_schema.SelefraTerraformResource{
-//		SelefraTableName:      "consul_admin_partition",
-//		TerraformResourceName: "consul_admin_partition",
-//		Description:           "",
-//		SubTables:             nil,
-//		ListResourceParamsFunc: func(ctx context.Context, clientMeta *schema.ClientMeta, taskClient any, task *schema.DataSourcePullTask, resultChannel chan<- any) ([]*selefra_terraform_schema.ResourceRequestParam, *schema.Diagnostics) {
-//			// TODO
-//			return nil, nil
-//		},
-//	}
-//}
+// terraform resource: consul_admin_partition (enterprise only)
+func GetResource_consul_admin_partition() *selefra_terraform_schema.SelefraTerraformResource {
+	return &selefra_terraform_schema.SelefraTerraformResource{
+		SelefraTableName:      "consul_admin_partition",
+		TerraformResourceName: "consul_admin_partition",
+		Description:           "",
+		SubTables:             nil,
+		ListResourceParamsFunc: func(ctx context.Context, clientMeta *schema.ClientMeta, taskClient any, task *schema.DataSourcePullTask, resultChannel chan<- any) ([]*selefra_terraform_schema.ResourceRequestParam, *schema.Diagnostics) {
+			// TODO
+			return nil, nil
+		},
+	}
+}
 
-//// terraform resource: consul_keys
-//func GetResource_consul_keys() *selefra_terraform_schema.SelefraTerraformResource {
-//	return &selefra_terraform_schema.SelefraTerraformResource{
-//		SelefraTableName:      "consul_keys",
-//		TerraformResourceName: "consul_keys",
-//		Description:           "",
-//		SubTables:             nil,
-//		ListResourceParamsFunc: func(ctx context.Context, clientMeta *schema.ClientMeta, taskClient any, task *schema.DataSourcePullTask, resultChannel chan<- any) ([]*selefra_terraform_schema.ResourceRequestParam, *schema.Diagnostics) {
-//			client := taskClient.(*Client)
-//
-//			kvs, _, err := client.ConsulClient.KV().List("", &consulapi.QueryOptions{})
-//			if err != nil {
-//				return nil, schema.NewDiagnostics().AddError(err)
-//			}
-//
-//			resourceRequestParamSlice := make([]*selefra_terraform_schema.ResourceRequestParam, 0)
-//			for _, kv := range kvs {
-//				resourceRequestParamSlice = append(resourceRequestParamSlice, &selefra_terraform_schema.ResourceRequestParam{
-//					ID: "consul",
-//					ArgumentMap: map[string]any{
-//						//"key": []string{fmt.Sprintf(`[path: %s, value: %s]`, kv.Key, string(kv.Value))},
-//						//"key": fmt.Sprintf("[path: %s, value: %s]", kv.Key, string(kv.Value)),
-//						"key": map[string]any{
-//							"path":  kv.Key,
-//							"value": string(kv.Value),
-//						},
-//					},
-//				})
-//			}
-//
-//			return resourceRequestParamSlice, nil
-//		},
-//	}
-//}
+// terraform resource: consul_keys
+func GetResource_consul_keys() *selefra_terraform_schema.SelefraTerraformResource {
+	return &selefra_terraform_schema.SelefraTerraformResource{
+		SelefraTableName:      "consul_keys",
+		TerraformResourceName: "consul_keys",
+		Description:           "",
+		SubTables:             nil,
+		ListResourceParamsFunc: func(ctx context.Context, clientMeta *schema.ClientMeta, taskClient any, task *schema.DataSourcePullTask, resultChannel chan<- any) ([]*selefra_terraform_schema.ResourceRequestParam, *schema.Diagnostics) {
+			//client := taskClient.(*Client)
+			//
+			//kvs, _, err := client.ConsulClient.KV().List("", &consulapi.QueryOptions{})
+			//if err != nil {
+			//	return nil, schema.NewDiagnostics().AddError(err)
+			//}
+			//
+			//resourceRequestParamSlice := make([]*selefra_terraform_schema.ResourceRequestParam, 0)
+			//for _, kv := range kvs {
+			//	resourceRequestParamSlice = append(resourceRequestParamSlice, &selefra_terraform_schema.ResourceRequestParam{
+			//		ID: "consul",
+			//		ArgumentMap: map[string]any{
+			//			//"key": []string{fmt.Sprintf(`[path: %s, value: %s]`, kv.Key, string(kv.Value))},
+			//			//"key": fmt.Sprintf("[path: %s, value: %s]", kv.Key, string(kv.Value)),
+			//			"key": map[string]any{
+			//				"path":  kv.Key,
+			//				"value": string(kv.Value),
+			//			},
+			//		},
+			//	})
+			//}
+			//
+			//return resourceRequestParamSlice, nil
+
+			// TODO
+
+			return nil, nil
+		},
+	}
+}
 
 // terraform resource: consul_acl_token. S
 func GetResource_consul_acl_token() *selefra_terraform_schema.SelefraTerraformResource {
@@ -218,33 +222,33 @@ func GetResource_consul_acl_token() *selefra_terraform_schema.SelefraTerraformRe
 	}
 }
 
-//// terraform resource: consul_license  (enterprise only)
-//func GetResource_consul_license() *selefra_terraform_schema.SelefraTerraformResource {
-//	return &selefra_terraform_schema.SelefraTerraformResource{
-//		SelefraTableName:      "consul_license",
-//		TerraformResourceName: "consul_license",
-//		Description:           "",
-//		SubTables:             nil,
-//		ListResourceParamsFunc: func(ctx context.Context, clientMeta *schema.ClientMeta, taskClient any, task *schema.DataSourcePullTask, resultChannel chan<- any) ([]*selefra_terraform_schema.ResourceRequestParam, *schema.Diagnostics) {
-//			client := taskClient.(*Client)
-//
-//			license, err := client.ConsulClient.Operator().LicenseGet(&consulapi.QueryOptions{})
-//			if err != nil {
-//				return nil, schema.NewDiagnostics().AddError(err)
-//			}
-//			resourceRequestParamSlice := []*selefra_terraform_schema.ResourceRequestParam{
-//				&selefra_terraform_schema.ResourceRequestParam{
-//					ID: license.License.LicenseID,
-//					//ArgumentMap: map[string]any{
-//					//	"license": license.License.Product
-//					//},
-//				},
-//			}
-//
-//			return resourceRequestParamSlice, nil
-//		},
-//	}
-//}
+// terraform resource: consul_license  (enterprise only)
+func GetResource_consul_license() *selefra_terraform_schema.SelefraTerraformResource {
+	return &selefra_terraform_schema.SelefraTerraformResource{
+		SelefraTableName:      "consul_license",
+		TerraformResourceName: "consul_license",
+		Description:           "",
+		SubTables:             nil,
+		ListResourceParamsFunc: func(ctx context.Context, clientMeta *schema.ClientMeta, taskClient any, task *schema.DataSourcePullTask, resultChannel chan<- any) ([]*selefra_terraform_schema.ResourceRequestParam, *schema.Diagnostics) {
+			client := taskClient.(*Client)
+
+			license, err := client.ConsulClient.Operator().LicenseGet(&consulapi.QueryOptions{})
+			if err != nil {
+				return nil, schema.NewDiagnostics().AddError(err)
+			}
+			resourceRequestParamSlice := []*selefra_terraform_schema.ResourceRequestParam{
+				&selefra_terraform_schema.ResourceRequestParam{
+					ID: license.License.LicenseID,
+					//ArgumentMap: map[string]any{
+					//	"license": license.License.Product
+					//},
+				},
+			}
+
+			return resourceRequestParamSlice, nil
+		},
+	}
+}
 
 // terraform resource: consul_acl_policy. S
 func GetResource_consul_acl_policy() *selefra_terraform_schema.SelefraTerraformResource {
@@ -276,34 +280,34 @@ func GetResource_consul_acl_policy() *selefra_terraform_schema.SelefraTerraformR
 	}
 }
 
-//// terraform resource: consul_namespace_role_attachment (enterprise only)
-//func GetResource_consul_namespace_role_attachment() *selefra_terraform_schema.SelefraTerraformResource {
-//	return &selefra_terraform_schema.SelefraTerraformResource{
-//		SelefraTableName:      "consul_namespace_role_attachment",
-//		TerraformResourceName: "consul_namespace_role_attachment",
-//		Description:           "",
-//		SubTables:             nil,
-//		ListResourceParamsFunc: func(ctx context.Context, clientMeta *schema.ClientMeta, taskClient any, task *schema.DataSourcePullTask, resultChannel chan<- any) ([]*selefra_terraform_schema.ResourceRequestParam, *schema.Diagnostics) {
-//			// TODO
-//			return nil, nil
-//		},
-//	}
-//}
-//
-//// terraform resource: consul_peering
-//func GetResource_consul_peering() *selefra_terraform_schema.SelefraTerraformResource {
-//	return &selefra_terraform_schema.SelefraTerraformResource{
-//		SelefraTableName:      "consul_peering",
-//		TerraformResourceName: "consul_peering",
-//		Description:           "",
-//		SubTables:             nil,
-//		ListResourceParamsFunc: func(ctx context.Context, clientMeta *schema.ClientMeta, taskClient any, task *schema.DataSourcePullTask, resultChannel chan<- any) ([]*selefra_terraform_schema.ResourceRequestParam, *schema.Diagnostics) {
-//
-//			// TODO
-//			return nil, nil
-//		},
-//	}
-//}
+// terraform resource: consul_namespace_role_attachment (enterprise only)
+func GetResource_consul_namespace_role_attachment() *selefra_terraform_schema.SelefraTerraformResource {
+	return &selefra_terraform_schema.SelefraTerraformResource{
+		SelefraTableName:      "consul_namespace_role_attachment",
+		TerraformResourceName: "consul_namespace_role_attachment",
+		Description:           "",
+		SubTables:             nil,
+		ListResourceParamsFunc: func(ctx context.Context, clientMeta *schema.ClientMeta, taskClient any, task *schema.DataSourcePullTask, resultChannel chan<- any) ([]*selefra_terraform_schema.ResourceRequestParam, *schema.Diagnostics) {
+			// TODO
+			return nil, nil
+		},
+	}
+}
+
+// terraform resource: consul_peering
+func GetResource_consul_peering() *selefra_terraform_schema.SelefraTerraformResource {
+	return &selefra_terraform_schema.SelefraTerraformResource{
+		SelefraTableName:      "consul_peering",
+		TerraformResourceName: "consul_peering",
+		Description:           "",
+		SubTables:             nil,
+		ListResourceParamsFunc: func(ctx context.Context, clientMeta *schema.ClientMeta, taskClient any, task *schema.DataSourcePullTask, resultChannel chan<- any) ([]*selefra_terraform_schema.ResourceRequestParam, *schema.Diagnostics) {
+
+			// TODO
+			return nil, nil
+		},
+	}
+}
 
 // terraform resource: consul_certificate_authority. S
 func GetResource_consul_certificate_authority() *selefra_terraform_schema.SelefraTerraformResource {
@@ -397,20 +401,20 @@ func GetResource_consul_acl_token_role_attachment() *selefra_terraform_schema.Se
 	}
 }
 
-//// terraform resource: consul_key_prefix
-//func GetResource_consul_key_prefix() *selefra_terraform_schema.SelefraTerraformResource {
-//	return &selefra_terraform_schema.SelefraTerraformResource{
-//		SelefraTableName:      "consul_key_prefix",
-//		TerraformResourceName: "consul_key_prefix",
-//		Description:           "",
-//		SubTables:             nil,
-//		ListResourceParamsFunc: func(ctx context.Context, clientMeta *schema.ClientMeta, taskClient any, task *schema.DataSourcePullTask, resultChannel chan<- any) ([]*selefra_terraform_schema.ResourceRequestParam, *schema.Diagnostics) {
-//			// TODO
-//
-//			return nil, nil
-//		},
-//	}
-//}
+// terraform resource: consul_key_prefix
+func GetResource_consul_key_prefix() *selefra_terraform_schema.SelefraTerraformResource {
+	return &selefra_terraform_schema.SelefraTerraformResource{
+		SelefraTableName:      "consul_key_prefix",
+		TerraformResourceName: "consul_key_prefix",
+		Description:           "",
+		SubTables:             nil,
+		ListResourceParamsFunc: func(ctx context.Context, clientMeta *schema.ClientMeta, taskClient any, task *schema.DataSourcePullTask, resultChannel chan<- any) ([]*selefra_terraform_schema.ResourceRequestParam, *schema.Diagnostics) {
+			// TODO
+
+			return nil, nil
+		},
+	}
+}
 
 // terraform resource: consul_node. S
 func GetResource_consul_node() *selefra_terraform_schema.SelefraTerraformResource {
@@ -545,61 +549,61 @@ func GetResource_consul_namespace() *selefra_terraform_schema.SelefraTerraformRe
 	}
 }
 
-//// terraform resource: consul_acl_auth_method
-//func GetResource_consul_acl_auth_method() *selefra_terraform_schema.SelefraTerraformResource {
-//	return &selefra_terraform_schema.SelefraTerraformResource{
-//		SelefraTableName:      "consul_acl_auth_method",
-//		TerraformResourceName: "consul_acl_auth_method",
-//		Description:           "",
-//		SubTables:             nil,
-//		ListResourceParamsFunc: func(ctx context.Context, clientMeta *schema.ClientMeta, taskClient any, task *schema.DataSourcePullTask, resultChannel chan<- any) ([]*selefra_terraform_schema.ResourceRequestParam, *schema.Diagnostics) {
-//			// TODO
-//			return nil, nil
-//		},
-//	}
-//}
+// terraform resource: consul_acl_auth_method
+func GetResource_consul_acl_auth_method() *selefra_terraform_schema.SelefraTerraformResource {
+	return &selefra_terraform_schema.SelefraTerraformResource{
+		SelefraTableName:      "consul_acl_auth_method",
+		TerraformResourceName: "consul_acl_auth_method",
+		Description:           "",
+		SubTables:             nil,
+		ListResourceParamsFunc: func(ctx context.Context, clientMeta *schema.ClientMeta, taskClient any, task *schema.DataSourcePullTask, resultChannel chan<- any) ([]*selefra_terraform_schema.ResourceRequestParam, *schema.Diagnostics) {
+			// TODO
+			return nil, nil
+		},
+	}
+}
 
-//// terraform resource: consul_network_area  (enterprise only)
-//func GetResource_consul_network_area() *selefra_terraform_schema.SelefraTerraformResource {
-//	return &selefra_terraform_schema.SelefraTerraformResource{
-//		SelefraTableName:      "consul_network_area",
-//		TerraformResourceName: "consul_network_area",
-//		Description:           "",
-//		SubTables:             nil,
-//		ListResourceParamsFunc: func(ctx context.Context, clientMeta *schema.ClientMeta, taskClient any, task *schema.DataSourcePullTask, resultChannel chan<- any) ([]*selefra_terraform_schema.ResourceRequestParam, *schema.Diagnostics) {
-//			// TODO
-//			return nil, nil
-//		},
-//	}
-//}
+// terraform resource: consul_network_area  (enterprise only)
+func GetResource_consul_network_area() *selefra_terraform_schema.SelefraTerraformResource {
+	return &selefra_terraform_schema.SelefraTerraformResource{
+		SelefraTableName:      "consul_network_area",
+		TerraformResourceName: "consul_network_area",
+		Description:           "",
+		SubTables:             nil,
+		ListResourceParamsFunc: func(ctx context.Context, clientMeta *schema.ClientMeta, taskClient any, task *schema.DataSourcePullTask, resultChannel chan<- any) ([]*selefra_terraform_schema.ResourceRequestParam, *schema.Diagnostics) {
+			// TODO
+			return nil, nil
+		},
+	}
+}
 
-//// terraform resource: consul_namespace_policy_attachment (enterprise only)
-//func GetResource_consul_namespace_policy_attachment() *selefra_terraform_schema.SelefraTerraformResource {
-//	return &selefra_terraform_schema.SelefraTerraformResource{
-//		SelefraTableName:      "consul_namespace_policy_attachment",
-//		TerraformResourceName: "consul_namespace_policy_attachment",
-//		Description:           "",
-//		SubTables:             nil,
-//		ListResourceParamsFunc: func(ctx context.Context, clientMeta *schema.ClientMeta, taskClient any, task *schema.DataSourcePullTask, resultChannel chan<- any) ([]*selefra_terraform_schema.ResourceRequestParam, *schema.Diagnostics) {
-//			// TODO
-//			return nil, nil
-//		},
-//	}
-//}
-//
-//// terraform resource: consul_peering_token
-//func GetResource_consul_peering_token() *selefra_terraform_schema.SelefraTerraformResource {
-//	return &selefra_terraform_schema.SelefraTerraformResource{
-//		SelefraTableName:      "consul_peering_token",
-//		TerraformResourceName: "consul_peering_token",
-//		Description:           "",
-//		SubTables:             nil,
-//		ListResourceParamsFunc: func(ctx context.Context, clientMeta *schema.ClientMeta, taskClient any, task *schema.DataSourcePullTask, resultChannel chan<- any) ([]*selefra_terraform_schema.ResourceRequestParam, *schema.Diagnostics) {
-//			// TODO
-//			return nil, nil
-//		},
-//	}
-//}
+// terraform resource: consul_namespace_policy_attachment (enterprise only)
+func GetResource_consul_namespace_policy_attachment() *selefra_terraform_schema.SelefraTerraformResource {
+	return &selefra_terraform_schema.SelefraTerraformResource{
+		SelefraTableName:      "consul_namespace_policy_attachment",
+		TerraformResourceName: "consul_namespace_policy_attachment",
+		Description:           "",
+		SubTables:             nil,
+		ListResourceParamsFunc: func(ctx context.Context, clientMeta *schema.ClientMeta, taskClient any, task *schema.DataSourcePullTask, resultChannel chan<- any) ([]*selefra_terraform_schema.ResourceRequestParam, *schema.Diagnostics) {
+			// TODO
+			return nil, nil
+		},
+	}
+}
+
+// terraform resource: consul_peering_token
+func GetResource_consul_peering_token() *selefra_terraform_schema.SelefraTerraformResource {
+	return &selefra_terraform_schema.SelefraTerraformResource{
+		SelefraTableName:      "consul_peering_token",
+		TerraformResourceName: "consul_peering_token",
+		Description:           "",
+		SubTables:             nil,
+		ListResourceParamsFunc: func(ctx context.Context, clientMeta *schema.ClientMeta, taskClient any, task *schema.DataSourcePullTask, resultChannel chan<- any) ([]*selefra_terraform_schema.ResourceRequestParam, *schema.Diagnostics) {
+			// TODO
+			return nil, nil
+		},
+	}
+}
 
 // terraform resource: consul_acl_token_policy_attachment. S
 func GetResource_consul_acl_token_policy_attachment() *selefra_terraform_schema.SelefraTerraformResource {

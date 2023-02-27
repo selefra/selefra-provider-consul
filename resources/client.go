@@ -9,6 +9,9 @@ import (
 type Config struct {
 	ConfigEntryKind string
 	Datacenter      string
+	Address         string
+	Token           string
+	Namespace       string
 }
 
 type Client struct {
@@ -20,13 +23,32 @@ type Client struct {
 	conf *Config
 }
 
-func newClient() *Client {
-	config := consulapi.Config{
-		Address: "localhost:8500",
-		Token:   "e95b599e-166e-7d80-08ad-aee76e7ddf19",
+func newClient(conf *Config) *Client {
+	var dc, addr, token, ns string
+	if conf.Address == "" {
+		addr = os.Getenv("CONSUL_ADDRESS")
+	}
+	if conf.Datacenter == "" {
+		dc = os.Getenv("CONSUL_DC")
+	}
+	if conf.ConfigEntryKind == "" {
+		conf.ConfigEntryKind = os.Getenv("CONSUL_CONFIG_ENTRY_KIND")
+	}
+	if conf.Token == "" {
+		token = os.Getenv("CONSUL_TOKEN")
+	}
+	if conf.Namespace == "" {
+		ns = os.Getenv("CONSUL_NAMESPACE")
 	}
 
-	os.Setenv("CONSUL_TOKEN", "e95b599e-166e-7d80-08ad-aee76e7ddf19")
+	config := consulapi.Config{
+		Address:    addr,
+		Token:      token,
+		Datacenter: dc,
+		Namespace:  ns,
+	}
+
+	os.Setenv("CONSUL_TOKEN", token)
 
 	consulClient, err := consulapi.NewClient(&config)
 	if err != nil {
@@ -35,9 +57,6 @@ func newClient() *Client {
 
 	return &Client{
 		ConsulClient: consulClient,
-		conf: &Config{
-			ConfigEntryKind: "proxy-defaults",
-			Datacenter:      "dc1",
-		},
+		conf:         conf,
 	}
 }

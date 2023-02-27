@@ -164,29 +164,33 @@ func GetResource_consul_keys() *selefra_terraform_schema.SelefraTerraformResourc
 		Description:           "",
 		SubTables:             nil,
 		ListResourceParamsFunc: func(ctx context.Context, clientMeta *schema.ClientMeta, taskClient any, task *schema.DataSourcePullTask, resultChannel chan<- any) ([]*selefra_terraform_schema.ResourceRequestParam, *schema.Diagnostics) {
-			client := taskClient.(*Client)
+			//client := taskClient.(*Client)
+			//
+			//kvs, _, err := client.ConsulClient.KV().List("", &consulapi.QueryOptions{})
+			//if err != nil {
+			//	return nil, schema.NewDiagnostics().AddError(err)
+			//}
+			//
+			//resourceRequestParamSlice := make([]*selefra_terraform_schema.ResourceRequestParam, 0)
+			//for _, kv := range kvs {
+			//	resourceRequestParamSlice = append(resourceRequestParamSlice, &selefra_terraform_schema.ResourceRequestParam{
+			//		ID: "consul",
+			//		ArgumentMap: map[string]any{
+			//			//"key": []string{fmt.Sprintf(`[path: %s, value: %s]`, kv.Key, string(kv.Value))},
+			//			//"key": fmt.Sprintf("[path: %s, value: %s]", kv.Key, string(kv.Value)),
+			//			"key": map[string]any{
+			//				"path":  kv.Key,
+			//				"value": string(kv.Value),
+			//			},
+			//		},
+			//	})
+			//}
+			//
+			//return resourceRequestParamSlice, nil
 
-			kvs, _, err := client.ConsulClient.KV().List("", &consulapi.QueryOptions{})
-			if err != nil {
-				return nil, schema.NewDiagnostics().AddError(err)
-			}
+			// TODO
 
-			resourceRequestParamSlice := make([]*selefra_terraform_schema.ResourceRequestParam, 0)
-			for _, kv := range kvs {
-				resourceRequestParamSlice = append(resourceRequestParamSlice, &selefra_terraform_schema.ResourceRequestParam{
-					ID: "consul",
-					ArgumentMap: map[string]any{
-						//"key": []string{fmt.Sprintf(`[path: %s, value: %s]`, kv.Key, string(kv.Value))},
-						//"key": fmt.Sprintf("[path: %s, value: %s]", kv.Key, string(kv.Value)),
-						"key": map[string]any{
-							"path":  kv.Key,
-							"value": string(kv.Value),
-						},
-					},
-				})
-			}
-
-			return resourceRequestParamSlice, nil
+			return nil, nil
 		},
 	}
 }
@@ -573,7 +577,7 @@ func GetResource_consul_network_area() *selefra_terraform_schema.SelefraTerrafor
 	}
 }
 
-// terraform resource: consul_namespace_policy_attachment
+// terraform resource: consul_namespace_policy_attachment (enterprise only)
 func GetResource_consul_namespace_policy_attachment() *selefra_terraform_schema.SelefraTerraformResource {
 	return &selefra_terraform_schema.SelefraTerraformResource{
 		SelefraTableName:      "consul_namespace_policy_attachment",

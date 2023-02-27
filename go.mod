@@ -1,10 +1,6 @@
-module github.com/CrestLee/selefra-terraform-provider-consul
+module github.com/CrestLee/selefra-provider-consul
 
 go 1.19
-
-replace github.com/selefra/selefra-provider-sdk => ../selefra-provider-sdk
-
-replace github.com/pulumi/pulumi-terraform-bridge/v3 => ../pulumi-terraform-bridge
 
 require (
 	github.com/hashicorp/consul/api v1.18.0

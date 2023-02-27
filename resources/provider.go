@@ -15,15 +15,20 @@ const Version = "v0.0.1"
 
 func GetSelefraTerraformProvider() *selefra_terraform_schema.SelefraTerraformProvider {
 	return &selefra_terraform_schema.SelefraTerraformProvider{
-		Name:         "selefra-terraform-provider-consul",
+		Name:         "selefra-provider-consul",
 		Version:      Version,
 		ResourceList: getResources(),
 		ClientMeta: schema.ClientMeta{
 			InitClient: func(ctx context.Context, clientMeta *schema.ClientMeta, config *viper.Viper) ([]any, *schema.Diagnostics) {
 
 				diagnostics := schema.NewDiagnostics()
-				//client := &Client{}
-				client := newClient()
+
+				var conf *Config
+				if err := config.Unmarshal(&conf); err != nil {
+					return nil, schema.NewDiagnostics().AddErrorMsg("analysis config err: %s", err.Error())
+				}
+
+				client := newClient(conf)
 
 				// run terraform providers
 				if clientMeta.Runtime().Workspace != "" {
