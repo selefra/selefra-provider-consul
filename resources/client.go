@@ -7,20 +7,20 @@ import (
 )
 
 type Config struct {
-	ConfigEntryKind string
-	Datacenter      string
-	Address         string
-	Token           string
-	Namespace       string
+	ConfigEntryKind	string
+	Datacenter	string
+	Address		string
+	Token		string
+	Namespace	string
 }
 
 type Client struct {
-	TerraformBridge *bridge.TerraformBridge
+	TerraformBridge	*bridge.TerraformBridge
 
 	// TODO You can continue to refine your client
-	ConsulClient *consulapi.Client
+	ConsulClient	*consulapi.Client
 
-	conf *Config
+	conf	*Config
 }
 
 func newClient(conf *Config) *Client {
@@ -42,10 +42,10 @@ func newClient(conf *Config) *Client {
 	}
 
 	config := consulapi.Config{
-		Address:    addr,
-		Token:      token,
-		Datacenter: dc,
-		Namespace:  ns,
+		Address:	addr,
+		Token:		token,
+		Datacenter:	dc,
+		Namespace:	ns,
 	}
 
 	os.Setenv("CONSUL_TOKEN", token)
@@ -56,7 +56,7 @@ func newClient(conf *Config) *Client {
 	}
 
 	return &Client{
-		ConsulClient: consulClient,
-		conf:         conf,
+		ConsulClient:	consulClient,
+		conf:		conf,
 	}
 }
