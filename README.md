@@ -1,6 +1,3 @@
-# Template Usage Wiki
-[https://github.com/selefra/selefra-provider-template/wiki](https://github.com/selefra/selefra-provider-template/wiki)
-
 # Selefra Provider consul
 
 Use this repo as a raw reference to **tables and schema** for consul resources. [Here's](https://github.com/selefra/selefra-provider-consul/blob/main/docs/tables/consul.md) a summary of full coverage.
