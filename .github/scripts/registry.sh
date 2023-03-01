@@ -12,14 +12,14 @@ esac
 
 version=v${1}
 time=$(date "+%Y-%m-%d")
-if [ -f "provider/REPLACE-ME-TO-YOUR-PROVIDER-NAME/metadata.yaml" ];then
-  VERSION=`cat provider/REPLACE-ME-TO-YOUR-PROVIDER-NAME/metadata.yaml | grep 'latest-version' | awk -F ' ' '{print $2}'`
+if [ -f "provider/consul/metadata.yaml" ];then
+  VERSION=`cat provider/consul/metadata.yaml | grep 'latest-version' | awk -F ' ' '{print $2}'`
 else
-  VERSION="REPLACE-ME-TO-YOUR-PROVIDER-NAME"
-  mkdir -p provider/REPLACE-ME-TO-YOUR-PROVIDER-NAME
+  VERSION="consul"
+  mkdir -p provider/consul
 fi
-FOR=`cat selefra-provider-REPLACE-ME-TO-YOUR-PROVIDER-NAME* | awk -F '_' '{print $3,$4}' | awk -F '.' '{print $1}' |  sed "s# #_#g"`
-if [ -d "provider/REPLACE-ME-TO-YOUR-PROVIDER-NAME/$version" ];then rm -rf provider/REPLACE-ME-TO-YOUR-PROVIDER-NAME/$version ; else echo "OK!"; fi && cp -r provider/template/version1 provider/REPLACE-ME-TO-YOUR-PROVIDER-NAME/$version
+FOR=`cat selefra-provider-consul* | awk -F '_' '{print $3,$4}' | awk -F '.' '{print $1}' |  sed "s# #_#g"`
+if [ -d "provider/consul/$version" ];then rm -rf provider/consul/$version ; else echo "OK!"; fi && cp -r provider/template/version1 provider/consul/$version
 
 for f in $FOR; do
   echo "$f"
@@ -41,14 +41,14 @@ done
 
 if [[ "$VERSION" != "$version" ]]; then
   cp provider/template/metadata.yaml provider/template/metadata.yaml.bak
-  sed "${sedi[@]}" "s#{{.ProviderName}}#REPLACE-ME-TO-YOUR-PROVIDER-NAME#g" provider/template/metadata.yaml
+  sed "${sedi[@]}" "s#{{.ProviderName}}#consul#g" provider/template/metadata.yaml
   sed "${sedi[@]}" "s#{{.LatestVersion}}#${version}#g" provider/template/metadata.yaml
   sed "${sedi[@]}" "s#{{.LatestUpdated}}#${time}#g" provider/template/metadata.yaml
-  sed "${sedi[@]}" "s#{{.Introduction}}#A Selefra provider for REPLACE-ME-TO-YOUR-PROVIDER-NAME .#g" provider/template/metadata.yaml
+  sed "${sedi[@]}" "s#{{.Introduction}}#A Selefra provider for consul .#g" provider/template/metadata.yaml
   sed "${sedi[@]}" "s#{{.ProviderVersion}}#${version}#g" provider/template/metadata.yaml
   sed "${sedi[@]}" '6d' provider/template/metadata.yaml
-  if [ -f "provider/REPLACE-ME-TO-YOUR-PROVIDER-NAME/metadata.yaml" ];then
-    sed -n '/^ /p' provider/REPLACE-ME-TO-YOUR-PROVIDER-NAME/metadata.yaml >> provider/template/metadata.yaml
+  if [ -f "provider/consul/metadata.yaml" ];then
+    sed -n '/^ /p' provider/consul/metadata.yaml >> provider/template/metadata.yaml
   fi
   echo "  - ${version}" >> provider/template/metadata.yaml
   cat provider/template/metadata.yaml > provider/REPLACE-ME-TO-YOUR-PROVIDER-NAME/metadata.yaml
