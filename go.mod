@@ -1,4 +1,4 @@
-module github.com/CrestLee/selefra-provider-consul
+module github.com/selefra/selefra-provider-consul
 
 go 1.19
 

@@ -3,8 +3,8 @@
 package main
 
 import (
+	"github.com/selefra/selefra-provider-consul/resources"
 	"github.com/selefra/selefra-provider-sdk/grpc/serve"
-	"github.com/CrestLee/selefra-provider-consul/resources"
 )
 
 func main() {

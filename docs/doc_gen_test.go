@@ -1,7 +1,7 @@
 package docs
 
 import (
-	"github.com/CrestLee/selefra-provider-consul/resources"
+	"github.com/selefra/selefra-provider-consul/resources"
 	"github.com/selefra/selefra-provider-sdk/doc_gen"
 	"testing"
 )

@@ -15,9 +15,9 @@ const Version = "v0.0.1"
 
 func GetSelefraTerraformProvider() *selefra_terraform_schema.SelefraTerraformProvider {
 	return &selefra_terraform_schema.SelefraTerraformProvider{
-		Name:		"selefra-provider-consul",
-		Version:	Version,
-		ResourceList:	getResources(),
+		Name:         "consul",
+		Version:      Version,
+		ResourceList: getResources(),
 		ClientMeta: schema.ClientMeta{
 			InitClient: func(ctx context.Context, clientMeta *schema.ClientMeta, config *viper.Viper) ([]any, *schema.Diagnostics) {
 
@@ -28,7 +28,10 @@ func GetSelefraTerraformProvider() *selefra_terraform_schema.SelefraTerraformPro
 					return nil, schema.NewDiagnostics().AddErrorMsg("analysis config err: %s", err.Error())
 				}
 
-				client := newClient(conf)
+				client, err := newClient(conf)
+				if err != nil {
+					return nil, schema.NewDiagnostics().AddError(err)
+				}
 
 				// run terraform providers
 				if clientMeta.Runtime().Workspace != "" {
@@ -61,17 +64,32 @@ func GetSelefraTerraformProvider() *selefra_terraform_schema.SelefraTerraformPro
 		},
 		ConfigMeta: provider.ConfigMeta{
 			GetDefaultConfigTemplate: func(ctx context.Context) string {
-				// TODO
-				return ``
+				return `token: <Your token>
+namespace: example
+address: 127.0.0.1:8500
+datacenter: dc1
+config_entry_kind: default`
 			},
 			Validation: func(ctx context.Context, config *viper.Viper) *schema.Diagnostics {
-				// TODO
+				var conf *Config
+				if err := config.Unmarshal(&conf); err != nil {
+					return schema.NewDiagnostics().AddErrorMsg("analysis config err: %s", err.Error())
+				}
+
+				client, err := newClient(conf)
+				if err != nil {
+					return schema.NewDiagnostics().AddError(err)
+				}
+				if _, err := client.ConsulClient.Agent().Services(); err != nil {
+					return schema.NewDiagnostics().AddErrorMsg("Got an error while fetch consul services: %s\n\tThere may some error in your config, please check it.", err.Error())
+				}
+
 				return nil
 			},
 		},
 		TransformerMeta: schema.TransformerMeta{
-			DefaultColumnValueConvertorBlackList:	[]string{},
-			DataSourcePullResultAutoExpand:		true,
+			DefaultColumnValueConvertorBlackList: []string{},
+			DataSourcePullResultAutoExpand:       true,
 		},
 		ErrorsHandlerMeta: schema.ErrorsHandlerMeta{
 			IgnoredErrors: []schema.IgnoredError{schema.IgnoredErrorOnSaveResult},
@@ -83,91 +101,91 @@ func getTerraformProviderExecuteFileSlice() []*terraform_providers.TerraformProv
 	providerFileSlice := make([]*terraform_providers.TerraformProviderFile, 0)
 
 	providerFileSlice = append(providerFileSlice, &terraform_providers.TerraformProviderFile{
-		ProviderName:		"",
-		ProviderVersion:	"2.17.0",
-		DownloadUrl:		"https://releases.hashicorp.com/terraform-provider-consul/2.17.0/terraform-provider-consul_2.17.0_darwin_amd64.zip",
-		Arch:			"amd64",
-		OS:			"darwin",
+		ProviderName:    "",
+		ProviderVersion: "2.17.0",
+		DownloadUrl:     "https://releases.hashicorp.com/terraform-provider-consul/2.17.0/terraform-provider-consul_2.17.0_darwin_amd64.zip",
+		Arch:            "amd64",
+		OS:              "darwin",
 	})
 
 	providerFileSlice = append(providerFileSlice, &terraform_providers.TerraformProviderFile{
-		ProviderName:		"",
-		ProviderVersion:	"2.17.0",
-		DownloadUrl:		"https://releases.hashicorp.com/terraform-provider-consul/2.17.0/terraform-provider-consul_2.17.0_darwin_arm64.zip",
-		Arch:			"arm64",
-		OS:			"darwin",
+		ProviderName:    "",
+		ProviderVersion: "2.17.0",
+		DownloadUrl:     "https://releases.hashicorp.com/terraform-provider-consul/2.17.0/terraform-provider-consul_2.17.0_darwin_arm64.zip",
+		Arch:            "arm64",
+		OS:              "darwin",
 	})
 
 	providerFileSlice = append(providerFileSlice, &terraform_providers.TerraformProviderFile{
-		ProviderName:		"",
-		ProviderVersion:	"2.17.0",
-		DownloadUrl:		"https://releases.hashicorp.com/terraform-provider-consul/2.17.0/terraform-provider-consul_2.17.0_freebsd_386.zip",
-		Arch:			"386",
-		OS:			"freebsd",
+		ProviderName:    "",
+		ProviderVersion: "2.17.0",
+		DownloadUrl:     "https://releases.hashicorp.com/terraform-provider-consul/2.17.0/terraform-provider-consul_2.17.0_freebsd_386.zip",
+		Arch:            "386",
+		OS:              "freebsd",
 	})
 
 	providerFileSlice = append(providerFileSlice, &terraform_providers.TerraformProviderFile{
-		ProviderName:		"",
-		ProviderVersion:	"2.17.0",
-		DownloadUrl:		"https://releases.hashicorp.com/terraform-provider-consul/2.17.0/terraform-provider-consul_2.17.0_freebsd_amd64.zip",
-		Arch:			"amd64",
-		OS:			"freebsd",
+		ProviderName:    "",
+		ProviderVersion: "2.17.0",
+		DownloadUrl:     "https://releases.hashicorp.com/terraform-provider-consul/2.17.0/terraform-provider-consul_2.17.0_freebsd_amd64.zip",
+		Arch:            "amd64",
+		OS:              "freebsd",
 	})
 
 	providerFileSlice = append(providerFileSlice, &terraform_providers.TerraformProviderFile{
-		ProviderName:		"",
-		ProviderVersion:	"2.17.0",
-		DownloadUrl:		"https://releases.hashicorp.com/terraform-provider-consul/2.17.0/terraform-provider-consul_2.17.0_freebsd_arm.zip",
-		Arch:			"arm",
-		OS:			"freebsd",
+		ProviderName:    "",
+		ProviderVersion: "2.17.0",
+		DownloadUrl:     "https://releases.hashicorp.com/terraform-provider-consul/2.17.0/terraform-provider-consul_2.17.0_freebsd_arm.zip",
+		Arch:            "arm",
+		OS:              "freebsd",
 	})
 
 	providerFileSlice = append(providerFileSlice, &terraform_providers.TerraformProviderFile{
-		ProviderName:		"",
-		ProviderVersion:	"2.17.0",
-		DownloadUrl:		"https://releases.hashicorp.com/terraform-provider-consul/2.17.0/terraform-provider-consul_2.17.0_linux_386.zip",
-		Arch:			"386",
-		OS:			"linux",
+		ProviderName:    "",
+		ProviderVersion: "2.17.0",
+		DownloadUrl:     "https://releases.hashicorp.com/terraform-provider-consul/2.17.0/terraform-provider-consul_2.17.0_linux_386.zip",
+		Arch:            "386",
+		OS:              "linux",
 	})
 
 	providerFileSlice = append(providerFileSlice, &terraform_providers.TerraformProviderFile{
-		ProviderName:		"",
-		ProviderVersion:	"2.17.0",
-		DownloadUrl:		"https://releases.hashicorp.com/terraform-provider-consul/2.17.0/terraform-provider-consul_2.17.0_linux_amd64.zip",
-		Arch:			"amd64",
-		OS:			"linux",
+		ProviderName:    "",
+		ProviderVersion: "2.17.0",
+		DownloadUrl:     "https://releases.hashicorp.com/terraform-provider-consul/2.17.0/terraform-provider-consul_2.17.0_linux_amd64.zip",
+		Arch:            "amd64",
+		OS:              "linux",
 	})
 
 	providerFileSlice = append(providerFileSlice, &terraform_providers.TerraformProviderFile{
-		ProviderName:		"",
-		ProviderVersion:	"2.17.0",
-		DownloadUrl:		"https://releases.hashicorp.com/terraform-provider-consul/2.17.0/terraform-provider-consul_2.17.0_linux_arm.zip",
-		Arch:			"arm",
-		OS:			"linux",
+		ProviderName:    "",
+		ProviderVersion: "2.17.0",
+		DownloadUrl:     "https://releases.hashicorp.com/terraform-provider-consul/2.17.0/terraform-provider-consul_2.17.0_linux_arm.zip",
+		Arch:            "arm",
+		OS:              "linux",
 	})
 
 	providerFileSlice = append(providerFileSlice, &terraform_providers.TerraformProviderFile{
-		ProviderName:		"",
-		ProviderVersion:	"2.17.0",
-		DownloadUrl:		"https://releases.hashicorp.com/terraform-provider-consul/2.17.0/terraform-provider-consul_2.17.0_linux_arm64.zip",
-		Arch:			"arm64",
-		OS:			"linux",
+		ProviderName:    "",
+		ProviderVersion: "2.17.0",
+		DownloadUrl:     "https://releases.hashicorp.com/terraform-provider-consul/2.17.0/terraform-provider-consul_2.17.0_linux_arm64.zip",
+		Arch:            "arm64",
+		OS:              "linux",
 	})
 
 	providerFileSlice = append(providerFileSlice, &terraform_providers.TerraformProviderFile{
-		ProviderName:		"",
-		ProviderVersion:	"2.17.0",
-		DownloadUrl:		"https://releases.hashicorp.com/terraform-provider-consul/2.17.0/terraform-provider-consul_2.17.0_windows_386.zip",
-		Arch:			"386",
-		OS:			"windows",
+		ProviderName:    "",
+		ProviderVersion: "2.17.0",
+		DownloadUrl:     "https://releases.hashicorp.com/terraform-provider-consul/2.17.0/terraform-provider-consul_2.17.0_windows_386.zip",
+		Arch:            "386",
+		OS:              "windows",
 	})
 
 	providerFileSlice = append(providerFileSlice, &terraform_providers.TerraformProviderFile{
-		ProviderName:		"",
-		ProviderVersion:	"2.17.0",
-		DownloadUrl:		"https://releases.hashicorp.com/terraform-provider-consul/2.17.0/terraform-provider-consul_2.17.0_windows_amd64.zip",
-		Arch:			"amd64",
-		OS:			"windows",
+		ProviderName:    "",
+		ProviderVersion: "2.17.0",
+		DownloadUrl:     "https://releases.hashicorp.com/terraform-provider-consul/2.17.0/terraform-provider-consul_2.17.0_windows_amd64.zip",
+		Arch:            "amd64",
+		OS:              "windows",
 	})
 
 	return providerFileSlice
