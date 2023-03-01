@@ -1,17 +1,19 @@
 package provider
 
 import (
+	"errors"
+	"fmt"
 	consulapi "github.com/hashicorp/consul/api"
 	"github.com/selefra/selefra-provider-sdk/terraform/bridge"
 	"os"
 )
 
 type Config struct {
-	ConfigEntryKind string
-	Datacenter      string
-	Address         string
-	Token           string
-	Namespace       string
+	ConfigEntryKind string `mapstructure:"config_entry_kind"`
+	Datacenter      string `mapstructure:"datacenter"`
+	Address         string `mapstructure:"address"`
+	Token           string `mapstructure:"token"`
+	Namespace       string `mapstructure:"namespace"`
 }
 
 type Client struct {
@@ -23,7 +25,7 @@ type Client struct {
 	conf *Config
 }
 
-func newClient(conf *Config) *Client {
+func newClient(conf *Config) (*Client, error) {
 	var dc, addr, token, ns string
 	if conf.Address == "" {
 		addr = os.Getenv("CONSUL_ADDRESS")
@@ -52,11 +54,11 @@ func newClient(conf *Config) *Client {
 
 	consulClient, err := consulapi.NewClient(&config)
 	if err != nil {
-		panic(err)
+		return nil, errors.New(fmt.Sprintf("create consul client failed: %v", err))
 	}
 
 	return &Client{
 		ConsulClient: consulClient,
 		conf:         conf,
-	}
+	}, nil
 }

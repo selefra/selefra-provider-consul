@@ -15,7 +15,7 @@ const Version = "v0.0.1"
 
 func GetSelefraTerraformProvider() *selefra_terraform_schema.SelefraTerraformProvider {
 	return &selefra_terraform_schema.SelefraTerraformProvider{
-		Name:         "selefra-provider-consul",
+		Name:         "consul",
 		Version:      Version,
 		ResourceList: getResources(),
 		ClientMeta: schema.ClientMeta{
@@ -28,7 +28,10 @@ func GetSelefraTerraformProvider() *selefra_terraform_schema.SelefraTerraformPro
 					return nil, schema.NewDiagnostics().AddErrorMsg("analysis config err: %s", err.Error())
 				}
 
-				client := newClient(conf)
+				client, err := newClient(conf)
+				if err != nil {
+					return nil, schema.NewDiagnostics().AddError(err)
+				}
 
 				// run terraform providers
 				if clientMeta.Runtime().Workspace != "" {
@@ -61,11 +64,26 @@ func GetSelefraTerraformProvider() *selefra_terraform_schema.SelefraTerraformPro
 		},
 		ConfigMeta: provider.ConfigMeta{
 			GetDefaultConfigTemplate: func(ctx context.Context) string {
-				// TODO
-				return ``
+				return `token: <Your token>
+namespace: example
+address: 127.0.0.1:8500
+datacenter: dc1
+config_entry_kind: default`
 			},
 			Validation: func(ctx context.Context, config *viper.Viper) *schema.Diagnostics {
-				// TODO
+				var conf *Config
+				if err := config.Unmarshal(&conf); err != nil {
+					return schema.NewDiagnostics().AddErrorMsg("analysis config err: %s", err.Error())
+				}
+
+				client, err := newClient(conf)
+				if err != nil {
+					return schema.NewDiagnostics().AddError(err)
+				}
+				if _, err := client.ConsulClient.Agent().Services(); err != nil {
+					return schema.NewDiagnostics().AddErrorMsg("Got an error while fetch consul services: %s\n\tThere may some error in your config, please check it.", err.Error())
+				}
+
 				return nil
 			},
 		},
